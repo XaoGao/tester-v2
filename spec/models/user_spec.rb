@@ -21,10 +21,15 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-require "test_helper"
+require 'rails_helper'
 
-class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+RSpec.describe User, type: :model do
+  describe '#full_name' do
+    context "user's full name" do
+      let(:user) { build(:user, first_name: 'Jon', last_name: 'Josh', middle_name: 'Jeck') }
+      it 'success' do
+        expect(user.full_name).to eq('Josh Jon Jeck')
+      end
+    end
+  end
 end

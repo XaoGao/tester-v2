@@ -19,7 +19,13 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'slim'
 
 group :development, :test do
+  gem 'annotate'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -30,6 +36,9 @@ group :development do
 end
 
 group :test do
+  gem 'cucumber-rails', require: false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   gem 'webdrivers'

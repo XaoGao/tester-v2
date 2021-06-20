@@ -21,10 +21,14 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-require "test_helper"
-
-class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+FactoryBot.define do
+  factory :user do
+    email { Faker::Internet.email }
+    password { 'password' }
+    first_name { Faker::Name.first_name }
+    last_name {  Faker::Name.last_name }
+    middle_name { Faker::Name.middle_name }
+    role { User.roles[:doctor] }
+    lock { false }
+  end
 end
