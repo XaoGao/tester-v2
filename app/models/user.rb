@@ -15,10 +15,14 @@
 #  role                   :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  department_id          :integer
+#  position_id            :integer
 #
 # Indexes
 #
+#  index_users_on_department_id         (department_id)
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_position_id           (position_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
@@ -28,11 +32,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  belongs_to :department, optional: true
+  belongs_to :position, optional: true
+
   validates :first_name, length: { maximum: 50 }
   validates :last_name, length: { maximum: 50 }
   validates :middle_name, length: { maximum: 50 }
 
   def full_name
     "#{last_name} #{first_name} #{middle_name}"
+  end
+
+  def initials
+    "#{last_name} #{first_name.first}. #{middle_name.first}."
   end
 end
