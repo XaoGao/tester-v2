@@ -28,14 +28,22 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  describe 'create' do
+    it 'create a user without position' do
+      user = build(:user, position: nil)
+      expect(user.valid?).to eq(true)
+      expect(user.position).to eq(Position.default)
+    end
+  end
+
   describe "user's name" do
-    context "#full_name" do
+    context '#full_name' do
       let(:user) { build(:user, first_name: 'Jon', last_name: 'Josh', middle_name: 'Jeck') }
       it 'success' do
         expect(user.full_name).to eq('Josh Jon Jeck')
       end
     end
-    context "#initials" do
+    context '#initials' do
       let(:user) { build(:user, first_name: 'Jon', last_name: 'Josh', middle_name: 'Jeck') }
       it 'success' do
         expect(user.initials).to eq('Josh J. J.')

@@ -11,8 +11,8 @@
 #
 FactoryBot.define do
   factory :position do
-    name { "MyString" }
+    sequence(:level) { |n| n + 1 }
+    name { Faker::Job.position }
     lock { false }
-    level { 1 }
   end
 end

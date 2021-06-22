@@ -35,9 +35,18 @@ class User < ApplicationRecord
   belongs_to :department, optional: true
   belongs_to :position, optional: true
 
+  before_validation :set_default_position
+
   validates :first_name, length: { maximum: 50 }
   validates :last_name, length: { maximum: 50 }
   validates :middle_name, length: { maximum: 50 }
+  validates :position, presence: true
+
+  def set_default_position
+    return if self.position.present?
+
+    self.position = Position.default
+  end
 
   def full_name
     "#{last_name} #{first_name} #{middle_name}"
