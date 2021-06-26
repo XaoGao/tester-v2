@@ -29,10 +29,33 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'create' do
-    it 'create a user without position' do
-      user = build(:user, position: nil)
-      expect(user.valid?).to eq(true)
-      expect(user.position).to eq(Position.default)
+    context 'positions' do
+      it 'create a user without position' do
+        user = build(:user, position: nil)
+        expect(user.save).to eq(true)
+        expect(user.position).to eq(Position.default)
+      end
+
+      it 'create a user with position' do
+        position = create(:position)
+        user = build(:user, position: position)
+        expect(user.save).to eq(true)
+        expect(user.position).to eq(position)
+      end
+    end
+    context 'departments' do
+      it 'create a user without department' do
+        user = build(:user, department: nil)
+        expect(user.save).to eq(true)
+        expect(user.department).to eq(Department.default)
+      end
+
+      it 'create a user with department' do
+        department = create(:department)
+        user = build(:user, department: department)
+        expect(user.save).to eq(true)
+        expect(user.department).to eq(department)
+      end
     end
   end
 
