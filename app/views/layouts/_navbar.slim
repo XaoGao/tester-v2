@@ -14,6 +14,9 @@ nav.bg-white.shadow.dark:bg-gray-800
         .flex.justify-center.md:block
           .relative.text-gray-700.dark:text-gray-200.hover:text-gray-600.dark:hover:text-gray-300
             button.btn.btn-green.btn-outline =current_user.initials
+        .flex.justify-center.md:block
+          = link_to destroy_user_session_path, method: :delete, class: "relative.text-gray-700.dark:text-gray-200.hover:text-gray-600.dark:hover:text-gray-300"
+            button.btn.btn-green.btn-outline Выйти
     - else
       .flex.justify-center.md:block
         = link_to new_user_session_path, class: 'relative.text-gray-700.dark:text-gray-200.hover:text-gray-600.dark:hover:text-gray-300' do
