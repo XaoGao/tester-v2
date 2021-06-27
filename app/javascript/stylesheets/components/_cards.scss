@@ -1,0 +1,13 @@
+.card {
+  @apply border w-2/4 mx-auto border-gray-400 rounded-lg md:p-4 bg-white sm:py-3 py-4 px-2 m-10
+}
+.card-content {
+  @apply pl-12 md:pl-10 xl:pl-10
+}
+
+.card-title {
+  @apply text-2xl font-bold mb-2 hover:text-blue-600 leading-7
+}
+.card-body {
+  @apply mb-1 leading-6
+}
