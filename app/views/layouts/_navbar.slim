@@ -13,7 +13,7 @@ nav.bg-white.shadow.dark:bg-gray-800
           a.my-1.text-gray-700.dark:text-gray-200.hover:text-indigo-500.dark:hover:text-indigo-400.md:mx-4.md:my-0 href="#"  Телефонная книга
         .flex.justify-center.md:block
           .relative.text-gray-700.dark:text-gray-200.hover:text-gray-600.dark:hover:text-gray-300
-            button.btn.btn-green.btn-outline =current_user.initials
+            button.btn.btn-green.btn-outline =current_user.abbreviated
         .flex.justify-center.md:block
           = link_to destroy_user_session_path, method: :delete, class: "relative.text-gray-700.dark:text-gray-200.hover:text-gray-600.dark:hover:text-gray-300"
             button.btn.btn-green.btn-outline Выйти

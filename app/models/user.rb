@@ -59,7 +59,7 @@ class User < ApplicationRecord
     "#{last_name} #{first_name} #{middle_name}"
   end
 
-  def initials
+  def abbreviated
     "#{last_name} #{first_name.first}. #{middle_name.first}."
   end
 end

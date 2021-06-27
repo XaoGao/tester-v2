@@ -28,31 +28,33 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'create' do
-    context 'positions' do
-      it 'create a user without position' do
-        user = build(:user, position: nil)
+  describe 'validate user' do
+    context 'position filed' do
+      let(:position) { create(:position) }
+      let(:user) { build(:user, position: nil) }
+
+      it 'when create without position' do
         expect(user.save).to eq(true)
         expect(user.position).to eq(Position.default)
       end
 
-      it 'create a user with position' do
-        position = create(:position)
-        user = build(:user, position: position)
+      it 'when create with position' do
+        user.update(position: position)
         expect(user.save).to eq(true)
         expect(user.position).to eq(position)
       end
     end
-    context 'departments' do
-      it 'create a user without department' do
-        user = build(:user, department: nil)
+    context 'department field' do
+      let(:department) { create(:department) }
+      let(:user) { build(:user, department: nil) }
+
+      it 'when create without department' do
         expect(user.save).to eq(true)
         expect(user.department).to eq(Department.default)
       end
 
-      it 'create a user with department' do
-        department = create(:department)
-        user = build(:user, department: department)
+      it 'when create with department' do
+        user.update(department: department)
         expect(user.save).to eq(true)
         expect(user.department).to eq(department)
       end
@@ -60,17 +62,13 @@ RSpec.describe User, type: :model do
   end
 
   describe "user's name" do
-    context '#full_name' do
-      let(:user) { build(:user, first_name: 'Jon', last_name: 'Josh', middle_name: 'Jeck') }
-      it 'success' do
-        expect(user.full_name).to eq('Josh Jon Jeck')
-      end
+    context '.full_name' do
+      subject { build(:user, first_name: 'Jon', last_name: 'Josh', middle_name: 'Jeck').full_name }
+      it { is_expected.to eq('Josh Jon Jeck') }
     end
-    context '#initials' do
-      let(:user) { build(:user, first_name: 'Jon', last_name: 'Josh', middle_name: 'Jeck') }
-      it 'success' do
-        expect(user.initials).to eq('Josh J. J.')
-      end
+    context '.abbreviated' do
+      subject { build(:user, first_name: 'Jon', last_name: 'Josh', middle_name: 'Jeck').abbreviated }
+      it { is_expected.to eq('Josh J. J.') }
     end
   end
 end
