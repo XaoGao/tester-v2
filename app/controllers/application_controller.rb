@@ -10,4 +10,23 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: attributes)
     devise_parameter_sanitizer.permit(:account_update, keys: attributes)
   end
+
+  def authenticate_hr
+    unless user_signed_in? && (current_user.hr? || current_user.admin?)
+      flash[:alert] = 'Ошибка доступа!'
+      redirect_to root_path
+    end
+  end
+
+  def authenticate_doctor
+    user_signed_in? && (current_user.doctor? || current_user.admin?)
+  end
+
+  def authenticate_registrator
+    user_signed_in? && (current_user.registrator? || current_user.admin?)
+  end
+
+  def authenticate_admin
+    user_signed_in? && current_user.admin?
+  end
 end

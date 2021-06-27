@@ -26,7 +26,7 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  enum roles: %i[doctor hr register admin]
+  enum role: { doctor: 0, hr: 1, register: 2, admin: 3 }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -44,13 +44,13 @@ class User < ApplicationRecord
   validates :department, presence: true
 
   def set_default_position
-    return if self.position.present?
+    return if position.present?
 
     self.position = Position.default
   end
 
   def set_default_department
-    return if self.department.present?
+    return if department.present?
 
     self.department = Department.default
   end
