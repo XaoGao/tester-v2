@@ -1,6 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe PositionsController, type: :controller do
+  describe 'routing to positions' do
+    it 'index' do
+      expect(get: '/positions').to route_to(controller: 'positions', action: 'index')
+    end
+    # it 'show' do
+    #   expect(get: '/positions/1').to route_to(controller: 'positions', action: 'show', id: '1')
+    # end
+    # it 'new' do
+    #   expect(get: '/positions/new').to route_to(controller: 'positions', action: 'new')
+    # end
+    # it 'create' do
+    #   expect(post: '/positions').to route_to(controller: 'positions', action: 'create')
+    # end
+    # it 'to edit' do
+    #   expect(get: '/positions/1/edit').to route_to(controller: 'positions', action: 'edit', id: '1')
+    # end
+    # it 'update' do
+    #   expect(put: '/positions/1').to route_to(controller: 'positions', action: 'update', id: '1')
+    # end
+    # it 'destroy' do
+    #   expect(delete: '/positions/1').to route_to(controller: 'positions', action: 'destroy', id: '1')
+    # end
+  end
+
   describe 'GET /index' do
     context 'rejection access to a doctor' do
       login_user(role: :doctor)

@@ -61,4 +61,20 @@ RSpec.describe Position, type: :model do
       it { is_expected.to eq(3) }
     end
   end
+
+  describe '#order_by' do
+    context 'sort positions by level' do
+      let(:positions) { create_list(:position, 3) }
+      subject { Position.order_by(:level).first }
+      it { is_expected.to eq(Position.first) }
+    end
+  end
+
+  describe '#order_by_reverse' do
+    context 'reserve sort positions by level' do
+      let(:positions) { create_list(:position, 3) }
+      subject { Position.order_by_reverse(:level).first }
+      it { is_expected.to eq(Position.last) }
+    end
+  end
 end
