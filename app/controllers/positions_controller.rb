@@ -3,6 +3,6 @@ class PositionsController < ApplicationController
   before_action :authenticate_hr
 
   def index
-    @positions = Position.enabled
+    @positions = Position.all
   end
 end

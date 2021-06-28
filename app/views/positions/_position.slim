@@ -1,0 +1,15 @@
+tr.row
+  td.row-item
+    .flex.items-center= index + 1
+  td.row-item
+    .flex.items-center
+      .ml-4
+        .text-sm.font-medium.text-gray-900
+          = position.level
+  td.row-item
+    .text-sm.text-gray-900= position.name
+  td.row-item
+    span.px-2.inline-flex.text-xs.leading-5.font-semibold.rounded-full.bg-green-100.text-green-800
+      = position.status
+  td.row-item.text-right.text-sm.font-medium
+    a.text-indigo-600.hover:text-indigo-900 href="#"  Edit

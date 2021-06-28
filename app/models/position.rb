@@ -16,4 +16,12 @@ class Position < ApplicationRecord
 
   validates :level, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 50 }
   validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 50 }
+
+  def status
+    if lock
+      'Enable'
+    else
+      'Disable'
+    end
+  end
 end
