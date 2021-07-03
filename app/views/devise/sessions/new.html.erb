@@ -4,12 +4,12 @@
 
     <div class="input-group">
       <%= f.label :email, class:"label" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", id: 'user_email' %>
     </div>
 
     <div class="input-group">
       <%= f.label :password, class:"label" %>
-      <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "input", id: 'user_password' %>
     </div>
 
     <div class="mb-6 input-checkbox">
@@ -20,7 +20,7 @@
     </div>
 
     <div class="input-group">
-      <%= f.submit "Log in", class: "btn btn-default" %>
+      <%= f.submit "Log in", class: "btn btn-default", id: 'user_signin_submit' %>
     </div>
 
   <% end %>
