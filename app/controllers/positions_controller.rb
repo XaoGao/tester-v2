@@ -19,6 +19,10 @@ class PositionsController < ApplicationController
     end
   end
 
+  def edit
+    @position = Position.find(params[:id])
+  end
+
   def update
     @position = Position.find(params[:id])
     if @position.update position_params

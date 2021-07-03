@@ -14,12 +14,12 @@ RSpec.describe PositionsController, type: :controller do
     it 'create' do
       expect(post: '/positions').to route_to(controller: 'positions', action: 'create')
     end
-    # it 'to edit' do
-    #   expect(get: '/positions/1/edit').to route_to(controller: 'positions', action: 'edit', id: '1')
-    # end
-    # it 'update' do
-    #   expect(put: '/positions/1').to route_to(controller: 'positions', action: 'update', id: '1')
-    # end
+    it 'to edit' do
+      expect(get: '/positions/1/edit').to route_to(controller: 'positions', action: 'edit', id: '1')
+    end
+    it 'update' do
+      expect(put: '/positions/1').to route_to(controller: 'positions', action: 'update', id: '1')
+    end
     # it 'destroy' do
     #   expect(delete: '/positions/1').to route_to(controller: 'positions', action: 'destroy', id: '1')
     # end
@@ -65,11 +65,12 @@ RSpec.describe PositionsController, type: :controller do
       end
     end
   end
+
   describe 'POST /create' do
     context 'rejection access to a doctor' do
       login_user(role: :doctor)
       it 'redirect to root path' do
-        get :index
+        get :new
         expect(response).to redirect_to(root_path)
       end
     end
@@ -77,7 +78,7 @@ RSpec.describe PositionsController, type: :controller do
     context 'rejection access to a register' do
       login_user(role: :register)
       it 'redirect to root path' do
-        get :index
+        get :new
         expect(response).to redirect_to(root_path)
       end
     end
@@ -85,7 +86,7 @@ RSpec.describe PositionsController, type: :controller do
     context 'access to a hr' do
       login_user(role: :hr)
       it 'returns a success response' do
-        get :index
+        get :new
         expect(response).to be_successful
       end
     end
@@ -93,7 +94,7 @@ RSpec.describe PositionsController, type: :controller do
     context 'access to an admin' do
       login_user(role: :admin)
       it 'returns a success response' do
-        get :index
+        get :new
         expect(response).to be_successful
       end
     end
@@ -106,13 +107,52 @@ RSpec.describe PositionsController, type: :controller do
         expect(Position.count).to eq(2)
         expect(Position.find_by(name: 'test')).to eq(position)
       end
+    end
+  end
 
-      it 'when visit page and successful create position' do
-        visit new_position_path
-        fill_in 'position-name',	with: 'example'
-        fill_in 'position-level',	with: '0'
+  describe 'PUT /update' do
+    context 'rejection access to a doctor' do
+      let(:position) { create(:position) }
+      login_user(role: :doctor)
+      it 'redirect to root path' do
+        get 'edit', params: { id: position.id }
+        expect(response).to redirect_to(root_path)
+      end
+    end
 
-        expect { click_button 'Save' }.to change(Position, :count).by(1)
+    context 'rejection access to a register' do
+      let(:position) { create(:position) }
+      login_user(role: :register)
+      it 'redirect to root path' do
+        get :edit, params: { id: position.id }
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'access to a hr' do
+      let(:position) { create(:position) }
+      login_user(role: :hr)
+      it 'returns a success response' do
+        get :edit, params: { id: position.id }
+        expect(response).to be_successful
+      end
+    end
+
+    context 'access to an admin' do
+      let(:position) { create(:position) }
+      login_user(role: :admin)
+      it 'returns a success response' do
+        get :edit, params: { id: position.id }
+        expect(response).to be_successful
+      end
+    end
+    context 'update a position' do
+      let(:position) { create(:position, name: 'before') }
+      login_user(role: :hr)
+      it 'when controller get params and successful update position ' do
+        new_position_attributes = build(:position, name: 'after', level: 0, lock: false)
+        put :update, params: { id: position.id, position: new_position_attributes.attributes }
+        expect(Position.find(position.id).name).to eq('after')
       end
     end
   end
