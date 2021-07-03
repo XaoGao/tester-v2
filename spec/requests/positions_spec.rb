@@ -20,9 +20,9 @@ RSpec.describe PositionsController, type: :controller do
     it 'update' do
       expect(put: '/positions/1').to route_to(controller: 'positions', action: 'update', id: '1')
     end
-    # it 'destroy' do
-    #   expect(delete: '/positions/1').to route_to(controller: 'positions', action: 'destroy', id: '1')
-    # end
+    it 'destroy' do
+      expect(delete: '/positions/1').to route_to(controller: 'positions', action: 'destroy', id: '1')
+    end
   end
 
   describe 'GET /index' do
@@ -115,7 +115,7 @@ RSpec.describe PositionsController, type: :controller do
       let(:position) { create(:position) }
       login_user(role: :doctor)
       it 'redirect to root path' do
-        get 'edit', params: { id: position.id }
+        get :edit, params: { id: position.id }
         expect(response).to redirect_to(root_path)
       end
     end
@@ -153,6 +153,52 @@ RSpec.describe PositionsController, type: :controller do
         new_position_attributes = build(:position, name: 'after', level: 0, lock: false)
         put :update, params: { id: position.id, position: new_position_attributes.attributes }
         expect(Position.find(position.id).name).to eq('after')
+      end
+    end
+  end
+
+  describe 'DELETE /destroy' do
+    context 'rejection access to a doctor' do
+      let(:position) { create(:position) }
+      login_user(role: :doctor)
+      it 'redirect to root path' do
+        delete :destroy, params: { id: position.id }
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'rejection access to a register' do
+      let(:position) { create(:position) }
+      login_user(role: :register)
+      it 'redirect to root path' do
+        delete :destroy, params: { id: position.id }
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'access to a hr' do
+      let(:position) { create(:position) }
+      login_user(role: :hr)
+      it 'returns a success response' do
+        delete :destroy, params: { id: position.id }
+        expect(response).to redirect_to(positions_path)
+      end
+    end
+
+    context 'access to an admin' do
+      let(:position) { create(:position) }
+      login_user(role: :admin)
+      it 'returns a success response' do
+        delete :destroy, params: { id: position.id }
+        expect(response).to redirect_to(positions_path)
+      end
+    end
+    context 'delete a position' do
+      let(:position) { create(:position) }
+      login_user(role: :hr)
+      it 'when controller get params and successful destroy a position' do
+        delete :destroy, params: { id: position.id }
+        expect(Position.all.include?(position)).to be false
       end
     end
   end

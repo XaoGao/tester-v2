@@ -13,9 +13,9 @@ class PositionsController < ApplicationController
   def create
     @position = Position.new position_params
     if @position.save
-      redirect_to positions_path, notice: "Добавлена позиция #{@position.name}"
+      redirect_to positions_path, notice: "Добавлена должжность #{@position.name}"
     else
-      redirect_to positions_path, alert: "Ошибка при добавлении позиции #{@position.name}"
+      redirect_to positions_path, alert: "Ошибка при добавлении должность #{@position.name}"
     end
   end
 
@@ -26,9 +26,18 @@ class PositionsController < ApplicationController
   def update
     @position = Position.find(params[:id])
     if @position.update position_params
-      redirect_to positions_path, notice: "Добавлена позиция #{@position.name}"
+      redirect_to positions_path, notice: "Добавлена должность #{@position.name}"
     else
-      redirect_to positions_path, alert: "Ошибка при добавлении позиции #{@position.name}"
+      redirect_to positions_path, alert: "Ошибка при обновлений должности #{@position.name}"
+    end
+  end
+
+  def destroy
+    @position = Position.find(params[:id])
+    if @position.delete
+      redirect_to positions_path, notice: "Удалена должность #{@position.name}"
+    else
+      redirect_to positions_path, alert: "Ошибка при удалении должности #{@position.name}"
     end
   end
 
