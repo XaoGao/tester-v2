@@ -4,7 +4,8 @@ Given('I logged i see a position') do
 end
 
 When('I click destory position') do
-  click_on 'position-destroy'
+  visit positions_path
+  click_on "position-destroy-#{@position.id}"
 end
 
 Then('I should not see the position') do
