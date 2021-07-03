@@ -5,16 +5,16 @@ RSpec.describe PositionsController, type: :controller do
     it 'index' do
       expect(get: '/positions').to route_to(controller: 'positions', action: 'index')
     end
-    # it 'show' do
-    #   expect(get: '/positions/1').to route_to(controller: 'positions', action: 'show', id: '1')
-    # end
+    it 'toggle' do
+      expect(put: '/positions/1/toggle').to route_to(controller: 'positions', action: 'toggle', id: '1')
+    end
     it 'new' do
       expect(get: '/positions/new').to route_to(controller: 'positions', action: 'new')
     end
     it 'create' do
       expect(post: '/positions').to route_to(controller: 'positions', action: 'create')
     end
-    it 'to edit' do
+    it 'edit' do
       expect(get: '/positions/1/edit').to route_to(controller: 'positions', action: 'edit', id: '1')
     end
     it 'update' do
@@ -48,13 +48,7 @@ RSpec.describe PositionsController, type: :controller do
       it 'returns a success response' do
         get :index
         expect(response).to be_successful
-        # expect(response).to render_template :index
       end
-
-      # it 'return all position' do
-      #   get :index
-      #   expect(assigns(:positions)).to match_array(positions)
-      # end
     end
 
     context 'access to an admin' do
@@ -199,6 +193,22 @@ RSpec.describe PositionsController, type: :controller do
       it 'when controller get params and successful destroy a position' do
         delete :destroy, params: { id: position.id }
         expect(Position.all.include?(position)).to be false
+      end
+    end
+  end
+
+  describe 'PUT /toggle' do
+    context 'toggle status for a position' do
+      login_user(role: :hr)
+      it 'change unlock status to lock' do
+        position = create(:position, lock: false)
+        put :toggle, params: { id: position.id }
+        expect(Position.find(position.id).lock).to be true
+      end
+      it 'change lock status to unlock' do
+        position = create(:position, lock: true)
+        put :toggle, params: { id: position.id }
+        expect(Position.find(position.id).lock).to be false
       end
     end
   end

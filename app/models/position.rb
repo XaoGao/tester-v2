@@ -21,9 +21,13 @@ class Position < ApplicationRecord
 
   def status
     if lock
-      'Enable'
+      'Заблокированый'
     else
-      'Disable'
+      'Активный'
     end
+  end
+
+  def toggle!
+    update(lock: !lock)
   end
 end

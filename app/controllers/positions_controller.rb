@@ -41,6 +41,16 @@ class PositionsController < ApplicationController
     end
   end
 
+  def toggle
+    @position = Position.find(params[:id])
+    if @position.toggle!
+      flash[:notice] = "Обновилен статус #{@position.name}"
+    else
+      flash[:alert] = "Ошибка при обновлении статуса #{@position.name}"
+    end
+    redirect_to positions_path
+  end
+
   private
 
   def position_params

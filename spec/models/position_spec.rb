@@ -77,4 +77,19 @@ RSpec.describe Position, type: :model do
       it { is_expected.to eq(Position.last) }
     end
   end
+
+  describe '.toggle!' do
+    context 'reverse value a lock field' do
+      let(:disable_position) { create(:position, lock: true) }
+      let(:enable_position) { create(:position, lock: false) }
+      it 'convert true to false' do
+        disable_position.toggle!
+        expect(disable_position.lock).to be false
+      end
+      it 'convert false to true' do
+        enable_position.toggle!
+        expect(enable_position.lock).to be true
+      end
+    end
+  end
 end
