@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   resources :positions, except: [:show] do
     put :toggle, on: :member
   end
+  resources :departments, except: [:show] do
+    put :toggle, on: :member
+  end
 end
