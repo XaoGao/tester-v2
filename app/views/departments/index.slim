@@ -1,0 +1,21 @@
+h1 Должность
+.flex.flex-col.text-left.mt-10
+  .-my-2.overflow-x-auto.sm:-mx-6.lg:-mx-8
+    .py-2.align-middle.inline-block.min-w-full.sm:px-6.lg:px-8
+      .shadow.overflow-hidden.border-b.border-gray-200.sm:rounded-lg
+        table.table
+          thead.head
+            tr
+              th.column scope="col" 
+                | №
+              th.column scope="col" 
+                | Уровень
+              th.column scope="col" 
+                | Название
+              th.column scope="col" 
+                | Стаутс
+              th.relative.px-6.py-3 scope="col" 
+                span.sr-only Edit
+          tbody.bg-white.divide-y.divide-gray-200
+            - @departments.each_with_index do |department, index|
+              = render 'departments/department', department: department, index: index

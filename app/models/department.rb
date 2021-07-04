@@ -22,4 +22,8 @@ class Department < ApplicationRecord
   def toggle!
     update(lock: !lock)
   end
+
+  def status
+    lock ? 'Заблокированый' : 'Активный'
+  end
 end

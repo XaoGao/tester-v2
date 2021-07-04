@@ -1,0 +1,12 @@
+= form_with(model: department) do |form|
+  .input-group
+    = form.label :level, class: 'label'
+    = form.text_field :level, class: 'input', id: 'department-level'
+  .input-group
+    = form.label :name
+    = form.text_field :name, class: 'input', id: 'department-name'  
+  .mb-6.input-checkbox
+    = form.check_box :lock
+    = form.label :lock, class:"label"
+  .input-group
+    = form.submit class: 'btn btn-default', id: 'department-submit'

@@ -1,0 +1,21 @@
+tr class=("row #{department.lock ? 'disable' : ''}")
+  td.row-item
+    .flex.items-center= index + 1
+  td.row-item
+    .flex.items-center
+      .ml-4
+        .text-sm.font-medium.text-gray-900
+          = department.level
+  td.row-item
+    .text-sm.text-gray-900= department.name
+  td.row-item
+    span.px-2.inline-flex.text-xs.leading-5.font-semibold.rounded-full.bg-green-100.text-green-800
+      = department.status
+  td.row-item.text-right.text-sm.font-medium
+    = link_to toggle_department_path(department), method: :put, class: 'btn btn-green btn-outline mr-2', id: "department-toggle-#{department.id}" do
+      i.fas.fa-toggle-on titile="Поменять статус"
+    = link_to edit_department_path(department), class: 'btn btn-indigo btn-outline mr-2' do
+      i.far.fa-edit title="Редактировать"
+    = link_to department_path(department), method: :delete, class: 'btn btn-red btn-outline', id: "department-destroy-#{department.id}" do
+      i.fas.fa-trash title="Удалить"
+
