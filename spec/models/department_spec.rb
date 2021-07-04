@@ -61,4 +61,35 @@ RSpec.describe Department, type: :model do
       it { is_expected.to eq(3) }
     end
   end
+
+  describe '#order_by' do
+    context 'sort departments by level' do
+      let!(:departments) { create_list(:department, 3) }
+      subject { Department.order_by(:level).first }
+      it { is_expected.to eq(departments.first) }
+    end
+  end
+
+  describe '#order_by_reverse' do
+    context 'reserve sort departments by level' do
+      let!(:departments) { create_list(:department, 3) }
+      subject { Department.order_by_reverse(:level).first }
+      it { is_expected.to eq(departments.last) }
+    end
+  end
+
+  describe '.toggle!' do
+    context 'reverse value a lock field' do
+      let!(:disable_department) { create(:department, lock: true) }
+      let!(:enable_department) { create(:department, lock: false) }
+      it 'convert true to false' do
+        disable_department.toggle!
+        expect(disable_department.lock).to be false
+      end
+      it 'convert false to true' do
+        enable_department.toggle!
+        expect(enable_department.lock).to be true
+      end
+    end
+  end
 end

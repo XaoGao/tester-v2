@@ -12,7 +12,7 @@
 FactoryBot.define do
   factory :department do
     sequence(:level) { |n| n + 1 }
-    name { Faker::Job.title }
+    name { Faker::Job.title + " #{Time.now.to_f}" }
     lock { false }
   end
 end
