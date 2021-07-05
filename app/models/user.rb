@@ -16,12 +16,14 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  department_id          :integer
+#  phone_id               :integer
 #  position_id            :integer
 #
 # Indexes
 #
 #  index_users_on_department_id         (department_id)
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_phone_id              (phone_id)
 #  index_users_on_position_id           (position_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
@@ -34,6 +36,7 @@ class User < ApplicationRecord
 
   belongs_to :department, optional: true
   belongs_to :position, optional: true
+  belongs_to :phone, optional: true
 
   before_validation :set_default_position, :set_default_department
 
