@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :phones, except: [:show] do
     put :toggle, on: :member
   end
+  resources :phonebooks, only: [:index]
 end

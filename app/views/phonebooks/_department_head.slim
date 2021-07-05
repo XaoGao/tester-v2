@@ -1,0 +1,9 @@
+table.table
+  thead.head
+    tr
+      th.column scope="col" 
+        =department.name
+table.table
+  tbody.bg-white.divide-y.divide-gray-200
+    - department.users.each do |user|
+      = render 'phonebooks/record', user: user

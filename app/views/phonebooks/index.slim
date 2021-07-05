@@ -1,0 +1,20 @@
+h1 Телефоны
+.flex.flex-col.text-left.mt-10
+  .-my-2.overflow-x-auto.sm:-mx-6.lg:-mx-8
+    .py-2.align-middle.inline-block.min-w-full.sm:px-6.lg:px-8
+      .shadow.overflow-hidden.border-b.border-gray-200.sm:rounded-lg
+        table.table
+          thead.head
+            tr
+              th.column scope="col" 
+                | №
+              th.column scope="col" 
+                | ФИО
+              th.column scope="col" 
+                | Должность
+              th.column scope="col" 
+                | Телефон
+
+        - @phonebook.each do |department|
+              = render 'phonebooks/department_head', department: department
+            

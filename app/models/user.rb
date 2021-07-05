@@ -28,6 +28,7 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  include Activeable
   enum role: { doctor: 0, hr: 1, register: 2, admin: 3 }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -64,5 +65,13 @@ class User < ApplicationRecord
 
   def abbreviated
     "#{last_name} #{first_name.first}. #{middle_name.first}."
+  end
+
+  def position_name
+    position.present? ? position.name : ''
+  end
+
+  def phone_number
+    phone.present? ? phone.number : ''
   end
 end

@@ -28,6 +28,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'spring'
@@ -35,7 +36,6 @@ group :development do
 end
 
 group :test do
-  # database_cleaner is not required, but highly recommended
   gem 'capybara', '>= 3.26'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
