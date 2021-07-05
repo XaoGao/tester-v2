@@ -38,5 +38,6 @@ FactoryBot.define do
     lock { false }
     department { association :department }
     position { association :position }
+    phone { association :phone }
   end
 end

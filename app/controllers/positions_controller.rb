@@ -26,10 +26,11 @@ class PositionsController < ApplicationController
   def update
     @position = Position.find(params[:id])
     if @position.update position_params
-      redirect_to positions_path, notice: "Добавлена должность #{@position.name}"
+      flash[:notice] = "Обновлена должность #{@position.name}"
     else
-      redirect_to positions_path, alert: "Ошибка при обновлений должности #{@position.name}"
+      flash[:alert] = "Ошибка при обновлений должности #{@position.name}"
     end
+    redirect_to positions_path
   end
 
   def destroy
@@ -44,7 +45,7 @@ class PositionsController < ApplicationController
   def toggle
     @position = Position.find(params[:id])
     if @position.toggle!
-      flash[:notice] = "Обновилен статус #{@position.name}"
+      flash[:notice] = "Обновлен статус #{@position.name}"
     else
       flash[:alert] = "Ошибка при обновлении статуса #{@position.name}"
     end

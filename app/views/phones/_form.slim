@@ -1,0 +1,9 @@
+= form_with(model: phone) do |form|
+  .input-group
+    = form.label :number
+    = form.text_field :number, class: 'input', id: 'phone-number'  
+  .mb-6.input-checkbox
+    = form.check_box :lock
+    = form.label :lock, class:"label"
+  .input-group
+    = form.submit class: 'btn btn-default', id: 'phone-submit'

@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   resources :departments, except: [:show] do
     put :toggle, on: :member
   end
+  resources :phones, except: [:show] do
+    put :toggle, on: :member
+  end
 end

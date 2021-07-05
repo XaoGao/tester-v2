@@ -1,0 +1,16 @@
+tr class=("row #{phone.lock ? 'disable' : ''}")
+  td.row-item
+    .flex.items-center= index + 1
+  td.row-item
+    .text-sm.text-gray-900= phone.number
+  td.row-item
+    span.px-2.inline-flex.text-xs.leading-5.font-semibold.rounded-full.bg-green-100.text-green-800
+      = phone.status
+  td.row-item.text-right.text-sm.font-medium
+    = link_to toggle_phone_path(phone), method: :put, class: 'btn btn-green btn-outline mr-2', id: "phone-toggle-#{phone.id}" do
+      i.fas.fa-toggle-on titile="Поменять статус"
+    = link_to edit_phone_path(phone), class: 'btn btn-indigo btn-outline mr-2' do
+      i.far.fa-edit title="Редактировать"
+    = link_to phone_path(phone), method: :delete, class: 'btn btn-red btn-outline', id: "phone-destroy-#{phone.id}" do
+      i.fas.fa-trash title="Удалить"
+

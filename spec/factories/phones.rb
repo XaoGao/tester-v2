@@ -10,7 +10,7 @@
 #
 FactoryBot.define do
   factory :phone do
-    number { "MyString" }
+    number { Faker::PhoneNumber.cell_phone }
     lock { false }
   end
 end

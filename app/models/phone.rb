@@ -9,7 +9,14 @@
 #  updated_at :datetime         not null
 #
 class Phone < ApplicationRecord
+  include Toggleable
+  include Sortable
+
   has_one :user
 
-  validates :number, presence: true, uniqueness: { case_sensitive: false }, length: {maximum: 50}
+  validates :number, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 50 }
+
+  def status
+    lock ? 'Заблокированый' : 'Активный'
+  end
 end
