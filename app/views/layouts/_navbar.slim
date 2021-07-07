@@ -5,13 +5,13 @@ nav.bg-white.shadow.dark:bg-gray-800
         =link_to 'Tester', root_path, class: "text-xl font-bold text-gray-800 dark:text-white md:text-2xl hover:text-gray-700 dark:hover:text-gray-300"
         =link_to 'Телефонная книга', phonebooks_path, class: "rounded-t ml-5"
     - if user_signed_in?
-      .items-center.md:flex data-controller="menu"
+      .items-center.md:flex data-controller="dropdown"
         .dropdown.inline-block.relative
-          button.bg-gray-300.text-gray-700.font-semibold.py-2.px-4.rounded.inline-flex.items-center data-action="click->menu#toggle"
+          button.bg-gray-300.text-gray-700.font-semibold.py-2.px-4.rounded.inline-flex.items-center data-action="click->dropdown#toggle"
             span.mr-1 =current_user.abbreviated
             svg.fill-current.h-4.w-4 viewbox=("0 0 20 20") xmlns="http://www.w3.org/2000/svg" 
               path d=("M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z") 
-          ul.dropdown-menu.absolute.hidden.text-gray-700.pt-1  data-menu-target="toggleable"
+          ul.dropdown-menu.absolute.hidden.text-gray-700.pt-1  data-dropdown-target="toggleable"
             - if current_user.admin_or_hr?
               li
                 =link_to 'Должности', positions_path, class: "rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
