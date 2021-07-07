@@ -11,4 +11,7 @@ Rails.application.routes.draw do
     put :toggle, on: :member
   end
   resources :phonebooks, only: [:index]
+  resources :patients, except: [:show, :destroy] do
+    put :toggle, on: :member
+  end
 end

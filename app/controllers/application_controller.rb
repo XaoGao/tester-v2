@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_registrator
-    user_signed_in? && (current_user.registrator? || current_user.admin?)
+    user_signed_in? && (current_user.register? || current_user.admin?)
   end
 
   def authenticate_admin

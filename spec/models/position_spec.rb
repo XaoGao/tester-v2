@@ -46,8 +46,8 @@ RSpec.describe Position, type: :model do
 
   describe '#enabled' do
     context 'when table is not empty' do
-      let!(:positions_unlock) { create_list(:position, 3, lock: false) }
-      let!(:positions_lock) { create_list(:position, 2, lock: true) }
+      let!(:positions_unlock) { create_list(:position, 2, lock: false) }
+      let!(:positions_lock) { create_list(:position, 3, lock: true) }
       subject { Position.enabled.count }
       it { is_expected.to eq(2) }
     end
@@ -55,8 +55,8 @@ RSpec.describe Position, type: :model do
 
   describe '#disabled' do
     context 'when table is not empty' do
-      let!(:positions_unlock) { create_list(:position, 3, lock: false) }
-      let!(:positions_lock) { create_list(:position, 2, lock: true) }
+      let!(:positions_unlock) { create_list(:position, 2, lock: false) }
+      let!(:positions_lock) { create_list(:position, 3, lock: true) }
       subject { Position.disabled.count }
       it { is_expected.to eq(3) }
     end

@@ -29,6 +29,7 @@
 #
 class User < ApplicationRecord
   include Activeable
+  include NameOfPerson
   enum role: { doctor: 0, hr: 1, register: 2, admin: 3 }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -38,6 +39,8 @@ class User < ApplicationRecord
   belongs_to :department, optional: true
   belongs_to :position, optional: true
   belongs_to :phone, optional: true
+
+  has_many :patients
 
   before_validation :set_default_position, :set_default_department
 
@@ -57,14 +60,6 @@ class User < ApplicationRecord
     return if department.present?
 
     self.department = Department.default
-  end
-
-  def full_name
-    "#{last_name} #{first_name} #{middle_name}"
-  end
-
-  def abbreviated
-    "#{last_name} #{first_name.first}. #{middle_name.first}."
   end
 
   def position_name

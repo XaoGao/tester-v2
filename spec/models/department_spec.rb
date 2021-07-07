@@ -46,8 +46,8 @@ RSpec.describe Department, type: :model do
 
   describe '#enabled' do
     context 'when table is not empty' do
-      let!(:departments_unlock) { create_list(:department, 3, lock: false) }
-      let!(:departments_lock) { create_list(:department, 2, lock: true) }
+      let!(:departments_unlock) { create_list(:department, 2, lock: false) }
+      let!(:departments_lock) { create_list(:department, 3, lock: true) }
       subject { Department.enabled.count }
       it { is_expected.to eq(2) }
     end
@@ -55,8 +55,8 @@ RSpec.describe Department, type: :model do
 
   describe '#disabled' do
     context 'when table is not empty' do
-      let!(:departments_unlock) { create_list(:department, 3, lock: false) }
-      let!(:departments_lock) { create_list(:department, 2, lock: true) }
+      let!(:departments_unlock) { create_list(:department, 2, lock: false) }
+      let!(:departments_lock) { create_list(:department, 3, lock: true) }
       subject { Department.disabled.count }
       it { is_expected.to eq(3) }
     end

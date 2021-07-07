@@ -1,0 +1,15 @@
+div class=("card #{patient.lock ? 'bg-gray-200' : ''}")
+  .card-content
+    .card-title 
+      | Номер карточки: 
+      =patient.document_number
+    .card-body
+      p
+        |ФИО: 
+        =patient.full_name
+      p
+        |Статус: 
+        =patient.status
+      p
+        |Текущий врач: 
+        =patient.current_doctor.full_name
