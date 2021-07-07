@@ -9,18 +9,18 @@ nav.bg-white.shadow.dark:bg-gray-800
             path d=("M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z") fill-rule="evenodd" 
     - if user_signed_in?
       .items-center.md:flex
-        .flex.flex-col.md:flex-row.md:mx-6
-          a.my-1.text-gray-700.dark:text-gray-200.hover:text-indigo-500.dark:hover:text-indigo-400.md:mx-4.md:my-0 href="#"  Телефонная книга
-        .flex.justify-center.md:block
-          = link_to positions_path, class: 'relative.text-gray-700.dark:text-gray-200.hover:text-gray-600.dark:hover:text-gray-300' do
-            button.btn.btn-green.btn-outline Должности
-            span.absolute.top-0.left-0.p-1.text-xs.text-white.bg-indigo-500.rounded-full
-        .flex.justify-center.md:block
-          .relative.text-gray-700.dark:text-gray-200.hover:text-gray-600.dark:hover:text-gray-300
-            button.btn.btn-green.btn-outline =current_user.abbreviated
-        .flex.justify-center.md:block
-          = link_to destroy_user_session_path, method: :delete, class: "relative.text-gray-700.dark:text-gray-200.hover:text-gray-600.dark:hover:text-gray-300"
-            button.btn.btn-green.btn-outline Выйти
+        .dropdown.inline-block.relative
+          button.bg-gray-300.text-gray-700.font-semibold.py-2.px-4.rounded.inline-flex.items-center
+            span.mr-1 =current_user.abbreviated
+            svg.fill-current.h-4.w-4 viewbox=("0 0 20 20") xmlns="http://www.w3.org/2000/svg" 
+              path d=("M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z") 
+          ul.dropdown-menu.absolute.hidden.text-gray-700.pt-1
+            li
+              =link_to 'Телефонная книга', phonebooks_path, class: "rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+            li
+              =link_to 'Должности', positions_path, class: "rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+            li
+              =link_to 'Выйти', destroy_user_session_path, method: :delete, class: "rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
     - else
       .flex.justify-center.md:block
         = link_to new_user_session_path, class: 'relative.text-gray-700.dark:text-gray-200.hover:text-gray-600.dark:hover:text-gray-300' do

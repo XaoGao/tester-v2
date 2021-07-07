@@ -1,0 +1,19 @@
+.alert {
+  @apply  border-t-4  rounded-b  px-4 py-3 shadow-md;
+}
+
+.alert-success {
+  @apply bg-green-100 border-green-500 text-green-900;
+}
+.alert-error {
+  @apply bg-red-100 border-red-500 text-red-900;
+}
+.alert-icon {
+  @apply fill-current h-6 w-6  mr-4;
+}
+.alert-icon-success {
+  @apply text-green-500;
+}
+.alert-icon-error {
+  @apply text-red-500;
+}
