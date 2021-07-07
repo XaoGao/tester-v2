@@ -74,4 +74,8 @@ class User < ApplicationRecord
   def phone_number
     phone.present? ? phone.number : ''
   end
+
+  def admin_or_hr?
+    hr? || admin?
+  end
 end
