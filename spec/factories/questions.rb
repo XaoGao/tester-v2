@@ -1,16 +1,20 @@
 # == Schema Information
 #
-# Table name: tests
+# Table name: questions
 #
 #  id         :integer          not null, primary key
-#  lock       :boolean
-#  name       :string
+#  level      :integer
+#  text       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  test_id    :integer
+#
+# Indexes
+#
+#  index_questions_on_test_id  (test_id)
 #
 FactoryBot.define do
-  factory :test do
-    name { "MyString" }
-    lock { false }
+  factory :question do
+    
   end
 end

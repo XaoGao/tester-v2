@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_07_180846) do
+ActiveRecord::Schema.define(version: 2021_07_09_105045) do
 
   create_table "departments", force: :cascade do |t|
     t.string "name", default: ""
@@ -43,6 +43,22 @@ ActiveRecord::Schema.define(version: 2021_07_07_180846) do
     t.string "name", default: ""
     t.boolean "lock", default: false
     t.integer "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "text"
+    t.integer "level"
+    t.integer "test_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["test_id"], name: "index_questions_on_test_id"
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string "name"
+    t.boolean "lock"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
