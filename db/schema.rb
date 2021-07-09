@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_105451) do
+ActiveRecord::Schema.define(version: 2021_07_09_112411) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "level"
@@ -65,6 +65,17 @@ ActiveRecord::Schema.define(version: 2021_07_09_105451) do
     t.index ["test_id"], name: "index_questions_on_test_id"
   end
 
+  create_table "testings", force: :cascade do |t|
+    t.integer "doctor_id"
+    t.integer "patient_id"
+    t.integer "test_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["doctor_id"], name: "index_testings_on_doctor_id"
+    t.index ["patient_id"], name: "index_testings_on_patient_id"
+    t.index ["test_id"], name: "index_testings_on_test_id"
+  end
+
   create_table "tests", force: :cascade do |t|
     t.string "name"
     t.boolean "lock"
@@ -96,4 +107,5 @@ ActiveRecord::Schema.define(version: 2021_07_09_105451) do
   end
 
   add_foreign_key "patients", "users", column: "current_doctor_id"
+  add_foreign_key "testings", "users", column: "doctor_id"
 end
