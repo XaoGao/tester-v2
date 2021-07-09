@@ -39,9 +39,13 @@ class PatientsController < ApplicationController
     if @patient.toggle!
       flash[:notice] = "Заблкирован пациент #{@patient.full_name}"
     else
-      flash[:alert] = "Ошибка при блкировки пациента #{@patient.full_name}"
+      flash[:alert] = "Ошибка при блoкировки пациента #{@patient.full_name}"
     end
     redirect_to patients_path
+  end
+
+  def my_patients
+    @patients = Patient.includes(:current_doctor).where(current_doctor: current_user).enabled
   end
 
   private

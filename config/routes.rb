@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   resources :patients, except: [:show, :destroy] do
     put :toggle, on: :member
   end
+  get 'my_patients', to: 'patients#my_patients'
 end
