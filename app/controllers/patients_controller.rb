@@ -1,6 +1,7 @@
 class PatientsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_registrator
+  before_action :authenticate_register, only: [:index, :new, :create, :edit, :update, :toggle]
+  before_action :authenticate_doctor, only: [:my_patients]
 
   def index
     @patients = Patient.includes(:current_doctor).all.order_by(:lock)

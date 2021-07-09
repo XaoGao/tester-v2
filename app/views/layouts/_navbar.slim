@@ -5,8 +5,10 @@ nav.bg-white.shadow.dark:bg-gray-800
         =link_to 'Tester', root_path, class: "text-xl font-bold text-gray-800 dark:text-white md:text-2xl hover:text-gray-700 dark:hover:text-gray-300"
       - if user_signed_in?    
         =link_to 'Телефонная книга', phonebooks_path, class: "rounded-t ml-5"
-        =link_to 'Пациенты', patients_path, class: "rounded-t ml-5"
-        =link_to 'Мои Пациенты', my_patients_path, class: "rounded-t ml-5"
+        - if current_user.register?
+          =link_to 'Пациенты', patients_path, class: "rounded-t ml-5"
+        - if current_user.doctor?
+          =link_to 'Мои Пациенты', my_patients_path, class: "rounded-t ml-5"
         
     - if user_signed_in?
       .items-center.md:flex data-controller="dropdown"

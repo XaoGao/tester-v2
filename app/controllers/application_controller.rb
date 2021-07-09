@@ -12,21 +12,27 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_hr
-    unless user_signed_in? && (current_user.hr? || current_user.admin?)
-      flash[:alert] = 'Ошибка доступа!'
-      redirect_to root_path
-    end
+    authenticate_by_role(:hr)
   end
 
   def authenticate_doctor
-    user_signed_in? && (current_user.doctor? || current_user.admin?)
+    authenticate_by_role(:doctor)
   end
 
-  def authenticate_registrator
-    user_signed_in? && (current_user.register? || current_user.admin?)
+  def authenticate_register
+    authenticate_by_role(:register)
   end
 
   def authenticate_admin
-    user_signed_in? && current_user.admin?
+    authenticate_by_role(:admin)
+  end
+
+  private
+
+  def authenticate_by_role(role)
+    unless user_signed_in? && (current_user.send("#{role}?") || current_user.admin?)
+      flash[:alert] = 'Ошибка доступа!'
+      redirect_to root_path
+    end
   end
 end
