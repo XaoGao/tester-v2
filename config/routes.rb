@@ -15,4 +15,6 @@ Rails.application.routes.draw do
     put :toggle, on: :member
   end
   get 'my_patients', to: 'patients#my_patients'
+
+  resources :phonebooks, only: [:index, :show]
 end
