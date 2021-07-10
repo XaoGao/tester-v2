@@ -13,3 +13,5 @@ div class=("card #{patient.lock ? 'bg-gray-200' : ''}")
       p
         |Текущий врач: 
         =patient.current_doctor.full_name
+      .
+        =link_to 'Провести тест', go_to_tests_path(patient.id), class: 'btn btn-indigo'
