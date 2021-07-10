@@ -17,6 +17,6 @@ class Question < ApplicationRecord
   belongs_to :test
   has_many :answers
 
-  validates :level, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 50 }
+  validates :level, presence: true, length: { maximum: 50 }
   validates :text, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 250 }
 end

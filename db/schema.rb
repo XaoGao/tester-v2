@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_112945) do
+ActiveRecord::Schema.define(version: 2021_07_10_102604) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "level"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_07_09_112945) do
     t.integer "question_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "value"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
@@ -94,6 +95,8 @@ ActiveRecord::Schema.define(version: 2021_07_09_112945) do
     t.boolean "lock"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "description"
+    t.text "instruction"
   end
 
   create_table "users", force: :cascade do |t|

@@ -5,6 +5,7 @@
 #  id          :integer          not null, primary key
 #  level       :integer
 #  text        :text
+#  value       :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  question_id :integer
