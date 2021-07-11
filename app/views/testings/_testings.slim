@@ -1,0 +1,13 @@
+.card
+  .card-content
+    .card-title 
+      =test.name
+    .card-body
+      p
+        =test.instruction
+      hr
+      p
+        =test.description
+      hr
+      p 
+        =link_to 'Выбрать', new_testings_path(patient_id: params[:patient_id],test_id: test), class: 'btn btn-primary'

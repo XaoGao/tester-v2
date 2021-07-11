@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # include AuthenticateByRole
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -11,7 +12,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: attributes)
   end
 
-  # create authenticate methods filter by user roles
   User.roles.each do |role|
     role_name = role[0]
     define_method("authenticate_#{role_name}") do

@@ -40,7 +40,7 @@ class User < ApplicationRecord
   belongs_to :position, optional: true
   belongs_to :phone, optional: true
 
-  has_many :patients
+  has_many :patients, foreign_key: 'current_doctor_id'
 
   before_validation :set_default_position, :set_default_department
 
