@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   get 'my_patients', to: 'patients#my_patients'
   get 'my_patients/:patient_id/tests', to: 'testings#go_to_test', as: 'go_to_tests'
   get 'my_patients/:patient_id/tests/:test_id/new', to: 'testings#new', as: 'new_testings'
+  post 'my_patients/:patient_id/tests', to: 'testings#create', as: 'testings'
 end

@@ -1,1 +1,14 @@
-h1 test
+.border.rounded.border-gray-400.mt-5
+  = form_with(model: @testing) do |form|
+    -@testing.test.questions.each_with_index do |question, index|
+      .p-3
+        h2 
+          ="#{index + 1}) " 
+          =question.text
+        -question.answers.each do |answer|
+          =form.radio_button(question.id, answer.value, checked: false, class: 'cursor-pointer')
+          =form.label "#{question.id}_#{answer.value}", answer.text, class: "ml-4 cursor-pointer"
+          br
+      hr
+    =form.hidden_field :test_id, value: @testing.test_id
+    =form.submit 'Сохранить', class: 'btn btn-red'
