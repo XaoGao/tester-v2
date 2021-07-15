@@ -24,5 +24,9 @@ class Testing < ApplicationRecord
   belongs_to :patient
   belongs_to :test
 
-  has_many :questionaswers
+  has_many :question_answers
+
+  def data_created_at
+    created_at.strftime('%d-%m-%y')
+  end
 end

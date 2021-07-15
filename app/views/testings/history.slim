@@ -1,0 +1,11 @@
+h2 ="Пациент:  #{@patient.full_name}"
+  
+-@testings.each do |testing|
+  p
+    ="#{testing.test.name} Пройдено: #{testing.data_created_at}"
+    br
+    -testing.question_answers.each do |qa|
+      p.p-2
+        =qa.question_with_answer
+    br
+  hr

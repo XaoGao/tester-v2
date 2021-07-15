@@ -40,4 +40,13 @@ class TestingsController < ApplicationController
     end
     redirect_to root_path
   end
+
+  def history
+    @patient = Patient.find_by(id: params[:patient_id])
+    if @patient.nil? || @patient.blank? || !current_user.patients.include?(@patient)
+      redirect_to root_path, alert: 'Нет указанного пациента нет в списке доступных'
+    end
+
+    @testings = Testing.includes(:test).includes(question_answers: [:answer, :question]).where(patient: @patient)
+  end
 end

@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     put :toggle, on: :member
   end
   get 'my_patients', to: 'patients#my_patients'
-  get 'my_patients/:patient_id/tests', to: 'testings#go_to_test', as: 'go_to_tests'
-  get 'my_patients/:patient_id/tests/:test_id/new', to: 'testings#new', as: 'new_testings'
-  post 'my_patients/:patient_id/tests', to: 'testings#create', as: 'testings'
+  get 'my_patients/:patient_id/testing', to: 'testings#go_to_test', as: 'go_to_testings'
+  get 'my_patients/:patient_id/testing/history', to: 'testings#history', as: 'history_testings'
+  get 'my_patients/:patient_id/testing/:test_id/new', to: 'testings#new', as: 'new_testings'
+  post 'my_patients/:patient_id/testing', to: 'testings#create', as: 'testings'
 end

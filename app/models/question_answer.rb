@@ -19,4 +19,22 @@
 #
 class QuestionAnswer < ApplicationRecord
   belongs_to :testing
+  belongs_to :answer
+  belongs_to :question
+
+  def question_text
+    question.text
+  end
+
+  def question_level
+    question.level
+  end
+
+  def answer_text
+    answer.text
+  end
+
+  def question_with_answer
+    "#{question_level}) #{question_text}: #{answer_text}"
+  end
 end
