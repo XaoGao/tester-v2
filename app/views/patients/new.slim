@@ -1,0 +1,23 @@
+h2.text-center Добавить пациента
+hr
+
+.w-2/4.mx-auto
+ =form_with(model: @patient) do |form|
+    .input-group
+      =form.label :document_number, class: 'label'
+      =form.text_field :document_number, class: 'input'
+
+    .input-group
+      =form.label :first_name, class: 'label'
+      =form.text_field :first_name, class: 'input'
+
+    .input-group
+      =form.label :last_name, class: 'label'
+      =form.text_field :last_name, class: 'input'
+
+    .input-group
+      =form.label :middle_name, class: 'label'
+      =form.text_field :middle_name, class: 'input'
+
+    .input-group
+      =form.submit "Добавить", class: "btn btn-default"

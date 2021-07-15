@@ -24,15 +24,16 @@ class Patient < ApplicationRecord
   include Activeable
   include NameOfPerson
   include Sortable
+  include Statusable
 
-  belongs_to :current_doctor, class_name: 'User', foreign_key: 'current_doctor_id'
+  belongs_to :current_doctor, class_name: 'User', foreign_key: 'current_doctor_id', optional: true
 
   validates :first_name, presence: true, length: { maximum: 50 }
   validates :last_name, presence: true, length: { maximum: 50 }
   validates :middle_name, presence: true, length: { maximum: 50 }
   validates :document_number, presence: true, length: { maximum: 50 }
 
-  def status
-    lock ? 'Не активный' : 'Активный'
+  def name_of_current_doctor
+    current_doctor.nil? ? '' : current_doctor.full_name
   end
 end

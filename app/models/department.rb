@@ -14,6 +14,7 @@ class Department < ApplicationRecord
   include Activeable
   include Sortable
   include Toggleable
+  include Statusable
 
   has_many :users
 
@@ -21,8 +22,4 @@ class Department < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 150 }
 
   scope :except_default, -> { where.not(name: 'default') }
-
-  def status
-    lock ? 'Заблокированый' : 'Активный'
-  end
 end

@@ -1,0 +1,20 @@
+tr class=("row #{patient.lock ? 'disable' : ''}")
+  td.row-item
+    .flex.items-center= index + 1
+  td.row-item
+    .text-sm.text-gray-900= patient.full_name
+  td.row-item
+    span.px-2.inline-flex.text-xs.leading-5.font-semibold.rounded-full.bg-green-100.text-green-800
+      = patient.document_number
+  td.row-item
+    span.px-2.inline-flex.text-xs.leading-5.font-semibold.rounded-full.bg-green-100.text-green-800
+      = patient.status
+  td.row-item
+    .text-sm.text-gray-900= patient.name_of_current_doctor
+    / = link_to toggle_patient_path(patient), method: :put, class: 'btn btn-green btn-outline mr-2', id: "patient-toggle-#{patient.id}" do
+    /   i.fas.fa-toggle-on titile="Поменять статус"
+    / = link_to edit_patient_path(patient), class: 'btn btn-indigo btn-outline mr-2' do
+    /   i.far.fa-edit title="Редактировать"
+    / = link_to patient_path(patient), method: :delete, class: 'btn btn-red btn-outline', id: "position-destroy-#{position.id}" do
+    /   i.fas.fa-trash title="Удалить"
+

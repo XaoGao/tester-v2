@@ -11,12 +11,9 @@
 class Phone < ApplicationRecord
   include Toggleable
   include Sortable
+  include Statusable
 
   has_one :user
 
   validates :number, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 50 }
-
-  def status
-    lock ? 'Заблокированый' : 'Активный'
-  end
 end

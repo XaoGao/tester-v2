@@ -1,6 +1,29 @@
-h2 Список пациентов
+h2.text-center Список пациентов
 hr
-h2 Форма поиска
+h2.text-center Форма поиска
 hr
-=render @patients
+
+.flex.flex-col.text-left.mt-10
+  .-my-2.overflow-x-auto.sm:-mx-6.lg:-mx-8
+    .py-2.align-middle.inline-block.min-w-full.sm:px-6.lg:px-8
+      .shadow.overflow-hidden.border-b.border-gray-200.sm:rounded-lg
+        table.table
+          thead.head
+            tr
+              th.column scope="col" 
+                | №
+              th.column scope="col" 
+                | Номер документа
+              th.column scope="col" 
+                | ФИО
+              th.column scope="col" 
+                | Стаутс
+              th.column scope="col" 
+                | Доктор
+              th.relative.px-6.py-3 scope="col" 
+                span.sr-only Edit
+          tbody.bg-white.divide-y.divide-gray-200
+            - @patients.each_with_index do |patient, index|
+              = render 'patients/patient_row', patient: patient, index: index
+
   
