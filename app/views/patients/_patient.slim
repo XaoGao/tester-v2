@@ -17,3 +17,5 @@ div class=("card #{patient.lock ? 'bg-gray-200' : ''}")
         .
           =link_to 'Провести тест', go_to_testings_path(patient.id), class: 'btn btn-indigo mr-5'
           =link_to 'История тестов', history_testings_path(patient), class: 'btn btn-indigo mr-5'
+          =link_to 'Записи', medical_records_path(patient), class: 'btn btn-indigo mr-5'
+          =link_to 'Добавить Записи', new_medical_records_path(patient), class: 'btn btn-indigo mr-5'

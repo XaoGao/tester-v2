@@ -26,7 +26,7 @@ class Testing < ApplicationRecord
 
   has_many :question_answers
 
-  def data_created_at
+  def date_created_at
     created_at.strftime('%d-%m-%y')
   end
 end

@@ -1841,3 +1841,10 @@ require 'faker'
 #     question_id: a[:question_id]
 #   )
 # end
+2.times do
+  MedicalRecord.create(
+    doctor: User.doctor.first,
+    patient: User.doctor.first.patients.first,
+    content: Faker::Lorem.paragraph(sentence_count: 20)
+  )
+end

@@ -7,6 +7,7 @@ nav.bg-white.shadow.dark:bg-gray-800
         =link_to 'Телефонная книга', phonebooks_path, class: "rounded-t ml-5"
         - if current_user.register?
           =link_to 'Пациенты', patients_path, class: "rounded-t ml-5"
+          =link_to 'Добавить пациента', new_patient_path, class: "rounded-t ml-5"
         - if current_user.doctor?
           =link_to 'Мои Пациенты', my_patients_path, class: "rounded-t ml-5"
         

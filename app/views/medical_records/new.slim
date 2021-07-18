@@ -1,0 +1,9 @@
+h2.text-center 
+  | Добавить новую запись для пациента 
+  =@patient.full_name
+=form_with(model: @mediacal_record) do |form|
+  .input-group
+    = form.label :content, 'Заключение'
+    = form.text_area :content, class: 'input', id: 'medical-record-content'
+  .input-group
+    = form.submit 'Сохранить запись', class: 'btn btn-default', id: 'medical-record-submit'

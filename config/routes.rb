@@ -19,4 +19,8 @@ Rails.application.routes.draw do
   get 'my_patients/:patient_id/testing/history', to: 'testings#history', as: 'history_testings'
   get 'my_patients/:patient_id/testing/:test_id/new', to: 'testings#new', as: 'new_testings'
   post 'my_patients/:patient_id/testing', to: 'testings#create', as: 'testings'
+
+  get 'my_patients/:patient_id/medical_records', to: 'medical_records#index', as: 'medical_records'
+  get 'my_patients/:patient_id/medical_records/new', to: 'medical_records#new', as: 'new_medical_records'
+  post 'my_patients/:patient_id/medical_records', to: 'medical_records#create', as: 'medical_record'
 end

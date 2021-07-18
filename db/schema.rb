@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_10_102604) do
+ActiveRecord::Schema.define(version: 2021_07_17_100033) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "level"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 2021_07_10_102604) do
     t.integer "level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "medical_records", force: :cascade do |t|
+    t.integer "patient_id"
+    t.integer "doctor_id"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["doctor_id"], name: "index_medical_records_on_doctor_id"
+    t.index ["patient_id"], name: "index_medical_records_on_patient_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -122,6 +132,7 @@ ActiveRecord::Schema.define(version: 2021_07_10_102604) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "medical_records", "users", column: "doctor_id"
   add_foreign_key "patients", "users", column: "current_doctor_id"
   add_foreign_key "testings", "users", column: "doctor_id"
 end
