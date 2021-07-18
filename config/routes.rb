@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   get 'my_patients/:patient_id/medical_records', to: 'medical_records#index', as: 'medical_records'
   get 'my_patients/:patient_id/medical_records/new', to: 'medical_records#new', as: 'new_medical_records'
   post 'my_patients/:patient_id/medical_records', to: 'medical_records#create', as: 'medical_record'
+
+  resources :vacations
 end

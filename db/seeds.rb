@@ -1841,10 +1841,20 @@ require 'faker'
 #     question_id: a[:question_id]
 #   )
 # end
-2.times do
-  MedicalRecord.create(
-    doctor: User.doctor.first,
-    patient: User.doctor.first.patients.first,
-    content: Faker::Lorem.paragraph(sentence_count: 20)
+# 2.times do
+#   MedicalRecord.create(
+#     doctor: User.doctor.first,
+#     patient: User.doctor.first.patients.first,
+#     content: Faker::Lorem.paragraph(sentence_count: 20)
+#   )
+# end
+
+User.all.each do |user|
+  start = Faker::Date.between(from: 3.month.ago, to: Date.today)
+  end_date = Faker::Date.between(from: 2.month.ago, to: Date.today)
+  number_of_date = end_date - start
+  user.vacations.create(
+    start: start,
+    end: end_date
   )
 end
