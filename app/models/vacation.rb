@@ -3,9 +3,9 @@
 # Table name: vacations
 #
 #  id             :integer          not null, primary key
-#  end            :datetime
+#  by             :datetime
+#  from           :datetime
 #  number_of_days :integer
-#  start          :datetime
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  user_id        :integer
@@ -15,15 +15,22 @@
 #  index_vacations_on_user_id  (user_id)
 #
 class Vacation < ApplicationRecord
+  extend DateFormatter
   belongs_to :user
 
-  validates :start, presence: true
-  validates :end, presence: true
+  validates :from, presence: true
+  validates :by, presence: true
   # validates :number_of_days, presence: true
 
   before_update :calculate_number_of_days
 
+  only_date_format :from, :by
+
   def calculate_number_of_days
-    self.number_of_days = (self.end.to_date - self.start.to_date).to_i
+    self.number_of_days = (self.by.to_date - self.from.to_date).to_i
+  end
+
+  def interval
+    "#{from_date} - #{by_date}"
   end
 end

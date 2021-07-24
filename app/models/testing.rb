@@ -20,13 +20,16 @@
 #  doctor_id  (doctor_id => users.id)
 #
 class Testing < ApplicationRecord
+  extend DateFormatter
   belongs_to :doctor, class_name: 'User', foreign_key: 'doctor_id'
   belongs_to :patient
   belongs_to :test
 
   has_many :question_answers
 
+  only_date_format :created_at
+
   def date_created_at
-    created_at.strftime('%d-%m-%y')
+    created_at_date
   end
 end

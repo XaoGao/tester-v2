@@ -1,9 +1,9 @@
 class VacationsController < ApplicationController
   def index
     @vacations = if params[:user_id].present?
-                   Vacation.all
+                  Vacation.where(user_id: params[:user_id])
                  else
-                   Vacation.where(user_id: params[:user_id])
+                  Vacation.all
                  end
   end
 

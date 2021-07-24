@@ -10,6 +10,8 @@ nav.bg-white.shadow.dark:bg-gray-800
           =link_to 'Добавить пациента', new_patient_path, class: "rounded-t ml-5"
         - if current_user.doctor?
           =link_to 'Мои Пациенты', my_patients_path, class: "rounded-t ml-5"
+        - if current_user.hr?
+          =link_to 'Отпуска', vacations_path, class: "rounded-t ml-5"
         
     - if user_signed_in?
       .items-center.md:flex data-controller="dropdown"

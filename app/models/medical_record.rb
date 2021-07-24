@@ -19,11 +19,14 @@
 #  doctor_id  (doctor_id => users.id)
 #
 class MedicalRecord < ApplicationRecord
+  extend DateFormatter
   include Sortable
   belongs_to :patient
   belongs_to :doctor, class_name: 'User', foreign_key: 'doctor_id'
 
   validates :content, presence: true
+
+  only_date_format :created_at
 
   def title_for_doctor
     "Пациент: #{patient.full_name}"
@@ -34,6 +37,6 @@ class MedicalRecord < ApplicationRecord
   end
 
   def date_created_at
-    "Дата: #{created_at.strftime('%d-%m-%y')}"
+    "Дата: #{created_at_date}"
   end
 end

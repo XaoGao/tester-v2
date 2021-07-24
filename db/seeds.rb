@@ -1849,12 +1849,13 @@ require 'faker'
 #   )
 # end
 
-User.all.each do |user|
-  start = Faker::Date.between(from: 3.month.ago, to: Date.today)
-  end_date = Faker::Date.between(from: 2.month.ago, to: Date.today)
-  number_of_date = end_date - start
-  user.vacations.create(
-    start: start,
-    end: end_date
-  )
-end
+# User.all.each do |user|
+#   from = Faker::Date.between(from: 3.month.ago, to: Date.today)
+#   by = Faker::Date.between(from: 2.month.ago, to: Date.today)
+#   number_of_date = (by.to_date - from.to_date).to_i
+#   user.vacations.create(
+#     from: from,
+#     by: by,
+#     number_of_days: number_of_date
+#   )
+# end

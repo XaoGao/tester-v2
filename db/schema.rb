@@ -133,8 +133,8 @@ ActiveRecord::Schema.define(version: 2021_07_18_114050) do
   end
 
   create_table "vacations", force: :cascade do |t|
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "from"
+    t.datetime "by"
     t.integer "number_of_days"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
